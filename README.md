@@ -1,2 +1,2 @@
 # cst221
-CST-221 operating systems
+Repository for CST221 projects - linux operating systems exploration. Author: Katon Bingham This is the first linux OS I have spent any amount of time exploring, and is my first formal introduction to Operating Systems. I have used Windows for most of my life and have used Kali Linux tools in a previous class, and am looking forward to becoming more familiar with what happens behind the scenes.
