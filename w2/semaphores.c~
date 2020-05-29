@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <semaphore.h>
+#include <pthread.h>
+
+// binary semaphore implementation
+
+sem_t m; //mutex
+
+void* thread(void* arg){
+  // wait
+  sem_wait(&m);
+  printf("\nEntered..\n");
+
+  // critical section
+  printf("\nCritical Section\n");
+  // sleep(0); //sleep was added for testing
+  
+
+  // signal
+  printf("\nJust Exiting...\n");
+  sem_post(&m);
+}
+
+
+int main(){
+  // beep boop
+  sem_init(&m, 0, 1);
+  pthread_t t1,t2;
+  pthread_create(&t1,NULL,thread,NULL);
+  // sleep(1); //sleep was added for testing
+  pthread_create(&t2,NULL,thread,NULL);
+
+  pthread_join(t1,NULL);
+  pthread_join(t2,NULL);
+  
+  sem_destroy(&m);
+
+  return 0;
+}
