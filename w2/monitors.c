@@ -1,3 +1,8 @@
+/* Monitor implementation in C 
+ * Author: Katon Bingham
+ * Date: 05/29/2020
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>

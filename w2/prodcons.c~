@@ -1,0 +1,86 @@
+/*
+ * Author: Katon Bingham
+ * Date: 05/31/2020
+ * Application to model producer/consumer relationship with threads.
+ */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+
+#include <unistd.h>
+#include <signal.h>
+#include <sys/mman.h>
+#include <errno.h>
+
+
+/*
+ *todo:
+ *define put()
+ *define get()
+*/
+
+
+
+int theProduct = 0;
+int itemCount = 0;
+
+#define BUF_SIZE 5 // temp size
+int buffer[BUF_SIZE]; // buffer
+
+int thread_id[3] = {0,1,2};
+
+//int full, empty;
+
+void producer(int *id) {
+  int i;
+  
+  while(1){
+    i = produce(); //theProduct++
+    buffer[itemCount] = i;
+    itemCount++;
+    //put(i);
+  }
+}
+
+void consumer(int *id) {
+  int i;
+  
+  while(1){
+    //i = get();
+    
+    consume(i); 
+  }
+}
+
+int produce(){
+  return theProduct++;
+}
+
+void consume(int i){
+  printf("%i", i);
+}
+/*
+void put(&i){
+  // put i into the buffer
+  
+}
+
+void get(){
+  //TODO
+}
+*/
+int main(){
+  pthread_t thread[3];
+  int i;
+  
+  pthread_create(&thread[0], NULL, (void *)consumer, &thread_id[0]);
+  pthread_create(&thread[1], NULL, (void *)producer, &thread_id[1]);
+  pthread_create(&thread[2], NULL, (void *)producer, &thread_id[2]);
+
+  for(i=0; i<3; i++){
+    pthread_join(thread[i], NULL);
+  }
+  
+  return 0;
+}

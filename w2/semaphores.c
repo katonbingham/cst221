@@ -1,3 +1,8 @@
+/* Semaphore implementation in C
+ * Author: Katon Bingham
+ * Date: 5/29/2020
+ */
+
 #include <stdio.h>
 #include <unistd.h>
 #include <semaphore.h>
